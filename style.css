@@ -12,7 +12,8 @@ body{
 :root{
   /* background-color */
   --bg-primary-color: #101010;
-
+  --bg-fill-color:#fdfdfc;
+  --bg-food-color: #ff3b3b;
   /* Text color */
   --text-primary-color: #f1eeee;
 
@@ -69,4 +70,20 @@ section .infos{
 .board{
   border: 1px solid var(--border-primary-colors);
   flex-grow: 1;
+ display: grid;
+ grid-template-columns: repeat(auto-fill,minmax(30px , 1fr));
+ grid-template-rows: repeat(auto-fill,minmax(30px , 1fr));
+}
+.block{
+  /* height: 30px;
+  width: 30px; */
+  border: 1px solid var(--border-primary-colors);
+  
+}
+
+.fill{
+  background-color: var(--bg-fill-color);
+}
+.food{
+  background-color: var(--bg-food-color);
 }
