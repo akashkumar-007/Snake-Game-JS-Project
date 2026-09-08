@@ -1,4 +1,6 @@
 const board = document.querySelector(".board");
+const startBtn = document.querySelector(".btn-start");
+const modal = document.querySelector(".modal");
 
 const blockHeight = 30
 const blockWidth = 30
@@ -46,14 +48,16 @@ function render(){
     head = {x:snake[0].x - 1, y:snake[0].y}
   }
 
-  if(head.x < 0 || head.x >= rows || head.y < 0 || head.y >= cols){
-    alert("Game Over")
-    clearInterval(intervalId);
-  }
+  // if(head.x < 0 || head.x >= rows || head.y < 0 || head.y >= cols){
+  //   alert("Game Over")
+  //   clearInterval(intervalId);
+  // }
   if(head.x === food.x && head.y === food.y){
      blocks[`${food.x}-${food.y}`].classList.remove("food");
       food = {x:Math.floor(Math.random() * rows), y:Math.floor(Math.random() * cols) }
       blocks[`${food.x}-${food.y}`].classList.add("food");
+
+      snake.unshift(head);
   }
 
   snake.forEach(segment => {
@@ -70,7 +74,15 @@ function render(){
 intervalId = setInterval(()=>{
  
   render();
-},400)
+},300)
+
+startBtn.addEventListener("click",()=>{
+  modal.style.display = "none";
+  intervalId = setInterval(()=>{
+    render();
+  },300)
+})   
+
 
 addEventListener("keydown",(e)=>{
  
